@@ -30,7 +30,8 @@
     "payload": "3.62.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sharp": "0.34.2"
+    "sharp": "0.34.2",
+    "framer-motion": "^11.11.17"
   },
   "devDependencies": {
     "@playwright/test": "1.54.1",

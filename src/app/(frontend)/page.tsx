@@ -1,59 +1,49 @@
-import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
 import { getPayload } from 'payload'
-import React from 'react'
-import { fileURLToPath } from 'url'
-
 import config from '@/payload.config'
-import './styles.css'
+import Hero from './components/Hero'
+import TemplateGrid from './components/TemplateGrid'
+import type { Template, Category } from '@/payload-types'
+
+export const metadata = {
+  title: 'Template Store - Premium Templates for Your Next Project',
+  description: 'Discover beautifully crafted templates designed to help you build stunning websites faster.',
+}
+
+async function getTemplates() {
+  const payload = await getPayload({ config })
+  const result = await payload.find({
+    collection: 'templates',
+    where: {
+      _status: {
+        equals: 'published',
+      },
+    },
+    limit: 100,
+    depth: 2,
+  })
+  return result.docs as Template[]
+}
+
+async function getCategories() {
+  const payload = await getPayload({ config })
+  const result = await payload.find({
+    collection: 'categories',
+    limit: 100,
+    depth: 1,
+  })
+  return result.docs as Category[]
+}
 
 export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
-
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  const [templates, categories] = await Promise.all([
+    getTemplates(),
+    getCategories(),
+  ])
 
   return (
-    <div className="home">
-      <div className="content">
-        <picture>
-          <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg" />
-          <Image
-            alt="Payload Logo"
-            height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
-            width={65}
-          />
-        </picture>
-        {!user && <h1>Welcome to your new project.</h1>}
-        {user && <h1>Welcome back, {user.email}</h1>}
-        <div className="links">
-          <a
-            className="admin"
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Go to admin panel
-          </a>
-          <a
-            className="docs"
-            href="https://payloadcms.com/docs"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
-          </a>
-        </div>
-      </div>
-      <div className="footer">
-        <p>Update this page by editing</p>
-        <a className="codeLink" href={fileURL}>
-          <code>app/(frontend)/page.tsx</code>
-        </a>
-      </div>
+    <div className="homepage">
+      <Hero />
+      <TemplateGrid templates={templates} categories={categories} />
     </div>
   )
 }
