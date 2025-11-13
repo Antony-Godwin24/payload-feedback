@@ -7,7 +7,7 @@ export const Templates: CollectionConfig = {
     defaultColumns: ['name', 'slug', 'price', 'updatedAt'],
     preview: (doc) => {
       if (doc?.slug) {
-        return `http://localhost:3001/template/${doc.slug}?preview=true`
+        return `${process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:3001'}/template/${doc.slug}?preview=true`
       }
       return null
     },

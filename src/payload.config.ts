@@ -19,6 +19,7 @@ const dirname = path.dirname(filename)
 // Log the database URI at startup to help debug connection issues in dev
 // (this will print to the terminal where `pnpm dev` is run)
 console.log('DEBUG: process.env.DATABASE_URI =', process.env.DATABASE_URI)
+console.log('DEBUG: process.env.PAYLOAD_PUBLIC_SERVER_URL =', process.env.PAYLOAD_PUBLIC_SERVER_URL)
 
 export default buildConfig({
   admin: {
@@ -37,19 +38,6 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   sharp,
-  // Server configuration: ensures the Admin UI (and other frontends) can reach
-  // the Payload server when deployed. We allow the deployed public URL (if set)
-  // as an allowed CORS origin so browser requests from the admin/frontend work.
-  server: {
-    port: Number(process.env.PORT) || 3001,
-    host: process.env.PAYLOAD_HOST || undefined,
-    cors: {
-      origin: process.env.PAYLOAD_PUBLIC_SERVER_URL
-        ? [process.env.PAYLOAD_PUBLIC_SERVER_URL]
-        : ['http://localhost:3000'],
-      credentials: true,
-    },
-  },
   // GraphQL configuration
   graphQL: {
     schemaOutputFile: path.resolve(dirname, 'generated-schema.graphql'),
