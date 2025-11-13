@@ -31,9 +31,9 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
   padding: 0;
   color: var(--text-primary);
@@ -324,18 +324,33 @@ body {
 }
 
 @keyframes float1 {
-  0%, 100% { transform: translateX(-50%) rotate(-8deg) translateY(0); }
-  50% { transform: translateX(-50%) rotate(-8deg) translateY(-20px); }
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(-8deg) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) rotate(-8deg) translateY(-20px);
+  }
 }
 
 @keyframes float2 {
-  0%, 100% { transform: translateY(-50%) rotate(5deg) translateX(0); }
-  50% { transform: translateY(-50%) rotate(5deg) translateX(-15px); }
+  0%,
+  100% {
+    transform: translateY(-50%) rotate(5deg) translateX(0);
+  }
+  50% {
+    transform: translateY(-50%) rotate(5deg) translateX(-15px);
+  }
 }
 
 @keyframes float3 {
-  0%, 100% { transform: rotate(12deg) translateY(0); }
-  50% { transform: rotate(12deg) translateY(-25px); }
+  0%,
+  100% {
+    transform: rotate(12deg) translateY(0);
+  }
+  50% {
+    transform: rotate(12deg) translateY(-25px);
+  }
 }
 
 .card-content {
@@ -417,6 +432,109 @@ body {
   background: var(--surface);
   border-color: var(--primary);
   color: var(--text-primary);
+}
+
+/* Template card action buttons */
+.template-action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.demo-button,
+.details-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.demo-button:hover,
+.details-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--primary);
+}
+
+.details-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+}
+
+/* Template detail / feedback */
+.template-feedback-section {
+  max-width: 900px;
+  margin: 48px auto;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.feedback-form .input,
+.feedback-form .textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.feedback-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feedback-item {
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.feedback-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.feedback-rating {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.feedback-comments {
+  margin-top: 8px;
+  color: var(--text-primary);
+}
+
+.feedback-summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.avg-rating {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
 }
 
 .filter-button.active {
