@@ -1,6 +1,9 @@
-# Template Feedback CMS
+# Feedback for Templates
 
-A lightweight CMS built with Payload for hosting templates and collecting structured feedback from users to help improve each template.
+Live demo: https://payload-feedback.vercel.app/  
+Maintained by: Antony Godwin S
+
+Feedback for Templates is a lightweight front-facing site and CMS combination built with Payload and Next.js. It provides a public feedback flow so users can submit structured feedback on templates, plus an admin UI for reviewing and managing template content.
 
 ## Features
 
@@ -24,7 +27,9 @@ A lightweight CMS built with Payload for hosting templates and collecting struct
 ## Collections
 
 ### Templates
+
 Manage design templates with:
+
 - Name and unique slug
 - Description and pricing
 - Live demo URLs
@@ -35,18 +40,24 @@ Manage design templates with:
 - **Preview Button** - Preview at `http://localhost:3001/template/[slug]?preview=true`
 
 ### Categories
+
 Organize templates with:
+
 - Title and slug
 - Many-to-many relationships with templates
 
 ### Media
+
 Standard upload collection for:
+
 - Images
 - Assets
 - Alt text for accessibility
 
 ### Users
+
 Authenticated users with:
+
 - Email/password login
 - JWT-based authentication
 - Admin access control
@@ -62,36 +73,41 @@ Authenticated users with:
 ### Installation
 
 1. **Clone and install dependencies:**
+
    ```bash
    pnpm install
    ```
 
 2. **Configure environment variables:**
-   
+
    The `.env` file should contain:
+
    ```env
    # MongoDB Configuration
    DATABASE_URI=mongodb://mongo:27017/payload
-   
+
    # Payload CMS Configuration
    PAYLOAD_SECRET=your-secret-key-here
    PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
-   
+
    # Next.js Frontend URL (for preview)
    NEXT_PUBLIC_FRONTEND_URL=http://localhost:3001
    ```
 
 3. **Start MongoDB (if using Docker):**
+
    ```bash
    docker-compose up -d
    ```
 
 4. **Generate TypeScript types:**
+
    ```bash
    pnpm generate:types
    ```
 
 5. **Start the development server:**
+
    ```bash
    pnpm dev
    ```
@@ -136,6 +152,7 @@ cms/
 ## API Endpoints
 
 ### REST API
+
 - Base URL: `http://localhost:3000/api`
 - Collections:
   - `/api/templates` - Templates CRUD
@@ -144,10 +161,12 @@ cms/
   - `/api/users` - User management
 
 ### GraphQL API
+
 - Endpoint: `http://localhost:3000/api/graphql`
 - Playground: `http://localhost:3000/api/graphql-playground`
 
 Example GraphQL query:
+
 ```graphql
 query {
   Templates {
@@ -174,33 +193,36 @@ query {
 ## Preview Integration
 
 Templates support draft previews. The admin panel includes a preview button that links to:
+
 ```
 http://localhost:3001/template/[slug]?preview=true
 ```
 
 Your Next.js frontend should:
+
 1. Check for `?preview=true` query parameter
 2. Fetch draft version from Payload API
 3. Render the preview with appropriate indicators
 
 Example Next.js preview implementation:
+
 ```typescript
 // app/template/[slug]/page.tsx
-export default async function TemplatePage({ 
-  params, 
-  searchParams 
-}: { 
+export default async function TemplatePage({
+  params,
+  searchParams,
+}: {
   params: { slug: string }
   searchParams: { preview?: string }
 }) {
   const isPreview = searchParams.preview === 'true'
-  
+
   const res = await fetch(
     `http://localhost:3000/api/templates?where[slug][equals]=${params.slug}${
       isPreview ? '&draft=true' : ''
-    }`
+    }`,
   )
-  
+
   // Render template...
 }
 ```
@@ -209,15 +231,17 @@ export default async function TemplatePage({
 
 ### MongoDB Connection
 
-The CMS connects to MongoDB using the `DATABASE_URI` environment variable. 
+The CMS connects to MongoDB using the `DATABASE_URI` environment variable.
 
 Default: `mongodb://mongo:27017/payload`
 
 For production, use a secure MongoDB connection string:
+
 ```env
 DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/template-feedback?retryWrites=true&w=majority
 ```
-```
+
+````
 
 ## Security
 
@@ -230,7 +254,7 @@ DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/template-feedba
 1. **Build the application:**
    ```bash
    pnpm build
-   ```
+````
 
 2. **Set production environment variables:**
    - Update `PAYLOAD_SECRET` to a secure value
@@ -286,10 +310,11 @@ MIT License - feel free to use this for your own projects!
 ## Support
 
 For issues and questions:
+
 - Check the [Payload CMS Documentation](https://payloadcms.com/docs)
 - Review the collection configurations in `src/collections/`
 - Ensure MongoDB is running and accessible
 
 ---
 
-**Template Feedback CMS** - Built with ❤️ using Payload CMS
+**Feedback for Templates** - Built with ❤️ using Payload CMS
