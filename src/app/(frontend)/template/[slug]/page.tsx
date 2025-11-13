@@ -13,14 +13,21 @@ interface TemplatePageProps {
   }>
 }
 
-async function getTemplate(slug: string, isDraft = false): Promise<Template | null> {
+async function getTemplate(identifier: string, isDraft = false): Promise<Template | null> {
   try {
     const draftParam = isDraft ? '&draft=true' : ''
+    // If the identifier looks like a Mongo ObjectId (24 hex chars), query by id,
+    // otherwise treat it as a slug. This allows templates to be opened by id
+    // when slugs are malformed or contain URLs.
+    const isId = /^[0-9a-fA-F]{24}$/.test(identifier)
+    const where = isId
+      ? `where[id][equals]=${identifier}`
+      : `where[slug][equals]=${encodeURIComponent(identifier)}`
     const res = await fetch(
-      `${process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'}/api/templates?where[slug][equals]=${slug}&depth=2${draftParam}`,
+      `${process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'}/api/templates?${where}&depth=2${draftParam}`,
       {
         next: { revalidate: isDraft ? 0 : 60 },
-      }
+      },
     )
 
     if (!res.ok) return null
@@ -37,7 +44,7 @@ export default async function TemplatePage({ params, searchParams }: TemplatePag
   const { slug } = await params
   const { preview } = await searchParams
   const isPreview = preview === 'true'
-  
+
   const template = await getTemplate(slug, isPreview)
 
   if (!template) {
@@ -60,16 +67,14 @@ export default async function TemplatePage({ params, searchParams }: TemplatePag
   return (
     <div className="template-detail-page">
       {isPreview && (
-        <div className="preview-banner">
-          🔍 Preview Mode - You are viewing a draft version
-        </div>
+        <div className="preview-banner">🔍 Preview Mode - You are viewing a draft version</div>
       )}
 
       <div className="template-hero">
         <div className="template-header">
           <h1>{template.name}</h1>
           {template.description && <p className="lead">{template.description}</p>}
-          
+
           <div className="template-meta">
             <div className="template-price-large">
               {template.price && template.price > 0 ? (
@@ -110,18 +115,20 @@ export default async function TemplatePage({ params, searchParams }: TemplatePag
             </div>
           </div>
 
-          {template.categories && Array.isArray(template.categories) && template.categories.length > 0 && (
-            <div className="template-categories-list">
-              {template.categories.map((cat, idx) => {
-                const category = typeof cat === 'object' ? cat : null
-                return category ? (
-                  <span key={idx} className="category-badge">
-                    {category.title}
-                  </span>
-                ) : null
-              })}
-            </div>
-          )}
+          {template.categories &&
+            Array.isArray(template.categories) &&
+            template.categories.length > 0 && (
+              <div className="template-categories-list">
+                {template.categories.map((cat, idx) => {
+                  const category = typeof cat === 'object' ? cat : null
+                  return category ? (
+                    <span key={idx} className="category-badge">
+                      {category.title}
+                    </span>
+                  ) : null
+                })}
+              </div>
+            )}
         </div>
 
         {thumbnailUrl && (

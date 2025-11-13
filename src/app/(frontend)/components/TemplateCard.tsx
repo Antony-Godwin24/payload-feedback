@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import type { Template } from '@/payload-types'
 
 interface TemplateCardProps {
@@ -11,6 +12,7 @@ interface TemplateCardProps {
 }
 
 export default function TemplateCard({ template, index }: TemplateCardProps) {
+  const router = useRouter()
   let thumbnail: string | null = null
 
   if (typeof template.thumbnail === 'object' && template.thumbnail?.url) {
@@ -42,7 +44,7 @@ export default function TemplateCard({ template, index }: TemplateCardProps) {
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
       className="template-card"
     >
-      <Link href={`/template/${template.slug}`} className="template-link">
+  <Link href={`/template/${template.id}`} className="template-link">
         <div className="template-image-wrapper">
           {thumbnail ? (
             <Image
@@ -73,35 +75,50 @@ export default function TemplateCard({ template, index }: TemplateCardProps) {
               whileHover={{ opacity: 1 }}
               className="template-actions"
             >
-              {liveDemoUrl && (
+              <div className="template-action-buttons">
+                {liveDemoUrl && (
+                  <button
+                    type="button"
+                    className="demo-button"
+                    title="View live demo"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      // open in new tab like an anchor would
+                      if (typeof window !== 'undefined') {
+                        window.open(liveDemoUrl, '_blank', 'noopener,noreferrer')
+                      }
+                    }}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="demo-icon"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                    Live Demo
+                  </button>
+                )}
+
                 <button
                   type="button"
-                  className="demo-button"
-                  title="View live demo"
+                  className="details-button"
+                  title="View details"
                   onClick={(e) => {
                     e.stopPropagation()
-                    // open in new tab like an anchor would
-                    if (typeof window !== 'undefined') {
-                      window.open(liveDemoUrl, '_blank', 'noopener,noreferrer')
-                    }
+                    // navigate to template details page (client-side)
+                    router.push(`/template/${template.id}`)
                   }}
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    className="demo-icon"
-                  >
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                  Live Demo
+                  View Details
                 </button>
-              )}
+              </div>
             </motion.div>
           </div>
         </div>
