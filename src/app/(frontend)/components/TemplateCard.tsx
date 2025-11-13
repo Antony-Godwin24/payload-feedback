@@ -74,13 +74,17 @@ export default function TemplateCard({ template, index }: TemplateCardProps) {
               className="template-actions"
             >
               {liveDemoUrl && (
-                <a
-                  href={liveDemoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
+                <button
+                  type="button"
                   className="demo-button"
                   title="View live demo"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    // open in new tab like an anchor would
+                    if (typeof window !== 'undefined') {
+                      window.open(liveDemoUrl, '_blank', 'noopener,noreferrer')
+                    }
+                  }}
                 >
                   <svg
                     width="16"
@@ -96,7 +100,7 @@ export default function TemplateCard({ template, index }: TemplateCardProps) {
                     <line x1="10" y1="14" x2="21" y2="3" />
                   </svg>
                   Live Demo
-                </a>
+                </button>
               )}
             </motion.div>
           </div>

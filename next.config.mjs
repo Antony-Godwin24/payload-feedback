@@ -40,7 +40,10 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    unoptimized: false,
+    // Disable Next's image optimization in development to avoid upstream timeouts
+    // when the local Payload server is used as an image source. In production,
+    // Next's optimizer can remain enabled.
+    unoptimized: process.env.NODE_ENV !== 'production',
   },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
