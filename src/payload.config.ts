@@ -37,6 +37,19 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   sharp,
+  // Server configuration: ensures the Admin UI (and other frontends) can reach
+  // the Payload server when deployed. We allow the deployed public URL (if set)
+  // as an allowed CORS origin so browser requests from the admin/frontend work.
+  server: {
+    port: Number(process.env.PORT) || 3001,
+    host: process.env.PAYLOAD_HOST || undefined,
+    cors: {
+      origin: process.env.PAYLOAD_PUBLIC_SERVER_URL
+        ? [process.env.PAYLOAD_PUBLIC_SERVER_URL]
+        : ['http://localhost:3000'],
+      credentials: true,
+    },
+  },
   // GraphQL configuration
   graphQL: {
     schemaOutputFile: path.resolve(dirname, 'generated-schema.graphql'),
