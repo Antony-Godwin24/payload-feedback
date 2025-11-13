@@ -43,9 +43,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hero-title"
           >
-            Premium Templates
+            Build with Confidence
             <br />
-            <span className="gradient-text">For Your Next Project</span>
+            <span className="gradient-text">Real Feedback, Better Templates</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -53,8 +53,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hero-description"
           >
-            Discover beautifully crafted templates designed to help you build
-            stunning websites faster. Professional quality, ready to use.
+            Explore templates and see what real users say about them. Submit feedback to help
+            authors improve and make better choices for your projects.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +71,7 @@ export default function Hero() {
                 templatesSection?.scrollIntoView({ behavior: 'smooth' })
               }}
             >
-              Browse Templates
+              Explore Templates
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -82,7 +82,7 @@ export default function Hero() {
                 templatesSection?.scrollIntoView({ behavior: 'smooth' })
               }}
             >
-              View Categories
+              Browse Categories
             </motion.button>
           </motion.div>
         </motion.div>
@@ -106,4 +106,3 @@ export default function Hero() {
     </section>
   )
 }
-

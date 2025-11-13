@@ -147,7 +147,7 @@ export default async function TemplatePage({ params, searchParams }: TemplatePag
 
       {template.sections && Array.isArray(template.sections) && template.sections.length > 0 && (
         <div className="template-sections">
-          <h2>Template Features</h2>
+          <h2>Highlights</h2>
           <div className="sections-grid">
             {template.sections.map((section, idx) => {
               const sectionImageUrl =
@@ -179,15 +179,15 @@ export default async function TemplatePage({ params, searchParams }: TemplatePag
 
       {/* Feedback section */}
       <div className="template-feedback-section">
-        <h2>Feedback</h2>
-        <p>Tell us what you think about this template — your input helps improve it.</p>
+        <h2>User Feedback</h2>
+        <p>Share your experience with this template — your feedback helps others choose and helps authors improve.</p>
         <FeedbackForm templateId={template.id} />
         <FeedbackList templateId={template.id} />
       </div>
 
       <div className="template-footer-cta">
-        <h2>Ready to get started?</h2>
-        <p>Get this template now and start building your project today.</p>
+        <h2>Want this template?</h2>
+        <p>Choose it now or preview the live demo to see it in action.</p>
         <div className="cta-buttons">
           {liveDemoUrl && (
             <a
@@ -196,10 +196,10 @@ export default async function TemplatePage({ params, searchParams }: TemplatePag
               rel="noopener noreferrer"
               className="btn btn-outline"
             >
-              Try Demo First
+              Preview Live
             </a>
           )}
-          <button className="btn btn-primary">Purchase for ${template.price || 0}</button>
+          <button className="btn btn-primary">{`Get this template — $${template?.price ?? 0}`}</button>
         </div>
       </div>
     </div>
@@ -217,7 +217,7 @@ export async function generateMetadata({ params }: TemplatePageProps) {
   }
 
   return {
-    title: `${template.name} - Template Feedback`,
+    title: `${template.name} - Feedback for Templates`,
     description: template.description || `Get ${template.name} template`,
   }
 }

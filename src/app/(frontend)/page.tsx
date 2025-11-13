@@ -5,8 +5,9 @@ import TemplateGrid from './components/TemplateGrid'
 import type { Template, Category } from '@/payload-types'
 
 export const metadata = {
-  title: 'Folio Mate',
-  description: 'Discover beautifully crafted templates designed to help you build stunning websites faster.',
+  title: 'Feedback for Templates',
+  description:
+    'Find templates and read real user feedback to choose what fits your project. Submit feedback to help authors improve.',
 }
 
 async function getTemplates() {
@@ -35,10 +36,7 @@ async function getCategories() {
 }
 
 export default async function HomePage() {
-  const [templates, categories] = await Promise.all([
-    getTemplates(),
-    getCategories(),
-  ])
+  const [templates, categories] = await Promise.all([getTemplates(), getCategories()])
 
   return (
     <div className="homepage">

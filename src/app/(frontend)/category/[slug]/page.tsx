@@ -14,7 +14,7 @@ async function getCategory(slug: string): Promise<Category | null> {
       `${process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'}/api/categories?where[slug][equals]=${slug}&depth=2`,
       {
         next: { revalidate: 60 },
-      }
+      },
     )
 
     if (!res.ok) return null
@@ -33,7 +33,7 @@ async function getTemplatesByCategory(categoryId: string): Promise<Template[]> {
       `${process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'}/api/templates?where[categories][in]=${categoryId}&depth=2`,
       {
         next: { revalidate: 60 },
-      }
+      },
     )
 
     if (!res.ok) return []
@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   }
 
   return {
-    title: `${category.title} Templates - Template Feedback`,
-      description: `Browse ${category.title} templates on Template Feedback`,
+    title: `${category.title} Templates - Feedback for Templates`,
+    description: `Browse ${category.title} templates on Feedback for Templates`,
   }
 }

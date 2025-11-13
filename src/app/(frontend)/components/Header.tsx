@@ -14,19 +14,13 @@ export default function Header() {
       >
         <div className="header-content">
           <Link href="/" className="logo">
-            <motion.span
-              whileHover={{ scale: 1.05 }}
-              className="logo-text"
-            >
-              Template Feedback
+            <motion.span whileHover={{ scale: 1.05 }} className="logo-text">
+              Feedback for Templates
             </motion.span>
           </Link>
 
           <div className="header-actions">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link href="/admin/login" className="login-button">
                 <svg
                   width="18"
@@ -41,7 +35,7 @@ export default function Header() {
                   <polyline points="10 17 15 12 10 7" />
                   <line x1="15" y1="12" x2="3" y2="12" />
                 </svg>
-                <span>Login(Admin)</span>
+                <span>Admin</span>
               </Link>
             </motion.div>
           </div>
@@ -50,4 +44,3 @@ export default function Header() {
     </header>
   )
 }
-

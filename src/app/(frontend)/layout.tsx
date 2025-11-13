@@ -3,8 +3,9 @@ import './styles.css'
 import Header from './components/Header'
 
 export const metadata = {
-  description: 'Discover beautifully crafted templates and collect feedback from users to improve them.',
-  title: 'Template Feedback',
+  description:
+    'Collect and showcase feedback for website templates—help authors improve their work and find proven templates for your next project.',
+  title: 'Feedback for Templates',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

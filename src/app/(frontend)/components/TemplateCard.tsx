@@ -44,7 +44,7 @@ export default function TemplateCard({ template, index }: TemplateCardProps) {
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
       className="template-card"
     >
-  <Link href={`/template/${template.id}`} className="template-link">
+      <Link href={`/template/${template.id}`} className="template-link">
         <div className="template-image-wrapper">
           {thumbnail ? (
             <Image
