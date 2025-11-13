@@ -1,8 +1,8 @@
-# FolioMate CMS - Deployment Checklist
+# Template Feedback CMS - Deployment Checklist
 
 ## Pre-Production Checklist
 
-Before deploying FolioMate CMS to production, ensure you've completed all items below.
+Before deploying Template Feedback CMS to production, ensure you've completed all items below.
 
 ---
 
@@ -160,7 +160,7 @@ Before deploying FolioMate CMS to production, ensure you've completed all items 
   - [ ] Add to `payload.config.ts`:
   ```typescript
   email: {
-    fromName: 'FolioMate CMS',
+  fromName: 'Template Feedback CMS',
     fromAddress: 'noreply@yourdomain.com',
     transportOptions: {
       host: process.env.SMTP_HOST,
@@ -280,7 +280,7 @@ Before deploying FolioMate CMS to production, ensure you've completed all items 
 
 1. **Build Image**
    ```bash
-   docker build -t foliomate-cms .
+  docker build -t template-feedback-cms .
    ```
 
 2. **Run Container**
@@ -290,7 +290,7 @@ Before deploying FolioMate CMS to production, ensure you've completed all items 
      -e DATABASE_URI=your-mongo-uri \
      -e PAYLOAD_SECRET=your-secret \
      -e PAYLOAD_PUBLIC_SERVER_URL=https://your-domain.com \
-     foliomate-cms
+  template-feedback-cms
    ```
 
 ---
@@ -376,7 +376,7 @@ Production `.env` should contain:
 
 ```env
 # Required
-DATABASE_URI=mongodb+srv://user:pass@cluster.mongodb.net/foliomate
+DATABASE_URI=mongodb+srv://user:pass@cluster.mongodb.net/template-feedback
 PAYLOAD_SECRET=<secure-random-string>
 PAYLOAD_PUBLIC_SERVER_URL=https://cms.yourdomain.com
 

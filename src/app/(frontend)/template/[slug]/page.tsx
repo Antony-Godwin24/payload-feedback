@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import type { Template } from '@/payload-types'
+import FeedbackForm from './FeedbackForm'
+import FeedbackList from './FeedbackList'
 
 interface TemplatePageProps {
   params: Promise<{
@@ -168,6 +170,14 @@ export default async function TemplatePage({ params, searchParams }: TemplatePag
         </div>
       )}
 
+      {/* Feedback section */}
+      <div className="template-feedback-section">
+        <h2>Feedback</h2>
+        <p>Tell us what you think about this template — your input helps improve it.</p>
+        <FeedbackForm templateId={template.id} />
+        <FeedbackList templateId={template.id} />
+      </div>
+
       <div className="template-footer-cta">
         <h2>Ready to get started?</h2>
         <p>Get this template now and start building your project today.</p>
@@ -200,7 +210,7 @@ export async function generateMetadata({ params }: TemplatePageProps) {
   }
 
   return {
-    title: `${template.name} - FolioMate`,
+    title: `${template.name} - Template Feedback`,
     description: template.description || `Get ${template.name} template`,
   }
 }

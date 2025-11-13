@@ -1,6 +1,6 @@
-# FolioMate CMS
+# Template Feedback CMS
 
-A powerful Template Provider Platform built with Payload CMS, designed for managing and selling design templates (like Prismic or Themeforest).
+A lightweight CMS built with Payload for hosting templates and collecting structured feedback from users to help improve each template.
 
 ## Features
 
@@ -215,7 +215,8 @@ Default: `mongodb://mongo:27017/payload`
 
 For production, use a secure MongoDB connection string:
 ```env
-DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/foliomate?retryWrites=true&w=majority
+DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/template-feedback?retryWrites=true&w=majority
+```
 ```
 
 ## Security
@@ -291,4 +292,4 @@ For issues and questions:
 
 ---
 
-**FolioMate CMS** - Built with ❤️ using Payload CMS
+**Template Feedback CMS** - Built with ❤️ using Payload CMS

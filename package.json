@@ -1,7 +1,7 @@
 {
-  "name": "foliomate-cms",
+  "name": "template-feedback-cms",
   "version": "1.0.0",
-  "description": "FolioMate CMS - A Template Provider Platform built with Payload CMS",
+  "description": "Template Feedback CMS - Collect feedback for templates built with Payload CMS",
   "license": "MIT",
   "type": "module",
   "scripts": {

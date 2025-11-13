@@ -12,7 +12,7 @@ mongodb+srv://mohamedabu:uchiha_itachi@project.4tix1vg.mongodb.net/?retryWrites=
 You need to add a database name before the `?`. Update it to:
 
 ```
-mongodb+srv://mohamedabu:uchiha_itachi@project.4tix1vg.mongodb.net/foliomate?retryWrites=true&w=majority&appName=project
+mongodb+srv://mohamedabu:uchiha_itachi@project.4tix1vg.mongodb.net/template-feedback?retryWrites=true&w=majority&appName=project
 ```
 
 Or use:
@@ -20,7 +20,7 @@ Or use:
 mongodb+srv://mohamedabu:uchiha_itachi@project.4tix1vg.mongodb.net/payload?retryWrites=true&w=majority&appName=project
 ```
 
-**Note**: The database name (`foliomate` or `payload`) will be created automatically if it doesn't exist.
+**Note**: The database name (`template-feedback` or `payload`) will be created automatically if it doesn't exist.
 
 ---
 
@@ -30,7 +30,7 @@ Set these in your Vercel project settings (Settings → Environment Variables):
 
 ### 1. DATABASE_URI
 ```
-mongodb+srv://mohamedabu:uchiha_itachi@project.4tix1vg.mongodb.net/foliomate?retryWrites=true&w=majority&appName=project
+mongodb+srv://mohamedabu:uchiha_itachi@project.4tix1vg.mongodb.net/template-feedback?retryWrites=true&w=majority&appName=project
 ```
 
 ### 2. PAYLOAD_SECRET
@@ -109,7 +109,7 @@ payload create:user
 
 When prompted, enter your MongoDB connection string:
 ```
-mongodb+srv://mohamedabu:uchiha_itachi@project.4tix1vg.mongodb.net/foliomate?retryWrites=true&w=majority&appName=project
+mongodb+srv://mohamedabu:uchiha_itachi@project.4tix1vg.mongodb.net/template-feedback?retryWrites=true&w=majority&appName=project
 ```
 
 Then enter:

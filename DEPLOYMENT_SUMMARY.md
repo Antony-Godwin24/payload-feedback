@@ -66,7 +66,7 @@ Set these in Vercel (Settings → Environment Variables):
 | Variable | Example Value | Notes |
 |----------|---------------|-------|
 | `PAYLOAD_SECRET` | `aBc123XyZ789...` | 32+ character random string |
-| `DATABASE_URI` | `mongodb+srv://user:pass@cluster.mongodb.net/foliomate?...` | MongoDB Atlas connection |
+| `DATABASE_URI` | `mongodb+srv://user:pass@cluster.mongodb.net/template-feedback?...` | MongoDB Atlas connection |
 | `PAYLOAD_PUBLIC_SERVER_URL` | `https://your-project.vercel.app` | Your Vercel URL |
 | `NEXT_PUBLIC_FRONTEND_URL` | `https://your-project.vercel.app` | Frontend URL (same or custom) |
 

@@ -18,7 +18,7 @@ export default function Header() {
               whileHover={{ scale: 1.05 }}
               className="logo-text"
             >
-              Folio Mate
+              Template Feedback
             </motion.span>
           </Link>
 

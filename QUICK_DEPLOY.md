@@ -11,7 +11,7 @@
 5. **Connect**: Click "Connect" → "Connect your application"
 6. Copy connection string:
    ```
-   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/foliomate?retryWrites=true&w=majority
+   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/template-feedback?retryWrites=true&w=majority
    ```
 7. Replace `<username>` and `<password>` with your credentials
 

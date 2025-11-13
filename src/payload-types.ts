@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     templates: Template;
     categories: Category;
+    feedbacks: Feedback;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     templates: TemplatesSelect<false> | TemplatesSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    feedbacks: FeedbacksSelect<false> | FeedbacksSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -229,6 +231,26 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedbacks".
+ */
+export interface Feedback {
+  id: string;
+  /**
+   * The template this feedback belongs to
+   */
+  template: string | Template;
+  name?: string | null;
+  email?: string | null;
+  /**
+   * A numeric rating from 1 (worst) to 5 (best)
+   */
+  rating: number;
+  comments?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -266,6 +288,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: string | Category;
+      } | null)
+    | ({
+        relationTo: 'feedbacks';
+        value: string | Feedback;
       } | null)
     | ({
         relationTo: 'payload-kv';
@@ -386,6 +412,19 @@ export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   templates?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedbacks_select".
+ */
+export interface FeedbacksSelect<T extends boolean = true> {
+  template?: T;
+  name?: T;
+  email?: T;
+  rating?: T;
+  comments?: T;
   updatedAt?: T;
   createdAt?: T;
 }

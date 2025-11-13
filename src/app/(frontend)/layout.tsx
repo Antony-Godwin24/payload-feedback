@@ -3,8 +3,8 @@ import './styles.css'
 import Header from './components/Header'
 
 export const metadata = {
-  description: 'Discover beautifully crafted templates designed to help you build stunning websites faster.',
-  title: 'FolioMate',
+  description: 'Discover beautifully crafted templates and collect feedback from users to improve them.',
+  title: 'Template Feedback',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

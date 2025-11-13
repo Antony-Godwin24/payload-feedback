@@ -1,4 +1,4 @@
-# FolioMate CMS - Quick Start Guide
+# Template Feedback CMS - Quick Start Guide
 
 ## 🚀 Get Started in 5 Minutes
 
@@ -138,7 +138,7 @@ Before deploying, update `.env`:
 PAYLOAD_SECRET=your-production-secret-here
 
 # Production MongoDB connection
-DATABASE_URI=mongodb+srv://user:pass@cluster.mongodb.net/foliomate?retryWrites=true&w=majority
+DATABASE_URI=mongodb+srv://user:pass@cluster.mongodb.net/template-feedback?retryWrites=true&w=majority
 
 # Production URLs
 PAYLOAD_PUBLIC_SERVER_URL=https://cms.yourdomain.com

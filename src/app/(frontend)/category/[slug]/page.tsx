@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   }
 
   return {
-    title: `${category.title} Templates - FolioMate`,
-    description: `Browse ${category.title} templates on FolioMate`,
+    title: `${category.title} Templates - Template Feedback`,
+      description: `Browse ${category.title} templates on Template Feedback`,
   }
 }

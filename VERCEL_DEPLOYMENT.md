@@ -47,11 +47,11 @@ This guide will walk you through deploying your Payload CMS application to Verce
    mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
    ```
 5. Replace `<username>` and `<password>` with your database user credentials
-6. Add your database name at the end: `...mongodb.net/foliomate?retryWrites=true&w=majority`
+6. Add your database name at the end: `...mongodb.net/template-feedback?retryWrites=true&w=majority`
 
 **Your final connection string should look like:**
 ```
-mongodb+srv://myuser:mypassword@cluster0.xxxxx.mongodb.net/foliomate?retryWrites=true&w=majority
+mongodb+srv://myuser:mypassword@cluster0.xxxxx.mongodb.net/template-feedback?retryWrites=true&w=majority
 ```
 
 ---

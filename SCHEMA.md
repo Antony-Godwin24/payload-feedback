@@ -1,4 +1,4 @@
-# FolioMate CMS - Collection Schema
+# Template Feedback CMS - Collection Schema
 
 ## Database Schema & Relationships
 
@@ -6,7 +6,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      FolioMate CMS                          │
+│                   Template Feedback CMS                       │
 │                   Collection Architecture                   │
 └─────────────────────────────────────────────────────────────┘
 
